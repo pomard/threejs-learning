@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js 基礎学習 - 01</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            font-family: Arial, sans-serif;
+        }
+        
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h3>Three.js基礎 - 黒い画面</h3>
+        <p>Scene + Camera + Renderer = 黒い画面</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        console.log('Three.js学習開始！');
+        
+        // 1. Scene（舞台）を作成
+        const scene = new THREE.Scene();
+        console.log('Scene作成完了');
+        
+        // 2. Camera（カメラ）を作成 ← この数字の意味を詳しく説明します
+        const camera = new THREE.PerspectiveCamera(
+            75,                           // 視野角
+            window.innerWidth / window.innerHeight,  // アスペクト比
+            0.1,                          // 近距離制限
+            1000                          // 遠距離制限
+        );
+        console.log('Camera作成完了');
+        
+        // 3. Renderer（描画エンジン）を作成
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        console.log('Renderer作成完了');
+        
+        // 4. 描画実行（今は何もないので黒い画面）
+        renderer.render(scene, camera);
+        console.log('描画完了 - 黒い画面が表示されているはずです');
+    </script>
+</body>
+</html>
